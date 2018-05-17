@@ -1,0 +1,3 @@
+class Shoulder < ActiveRecord::Base
+  belongs_to :user
+end
