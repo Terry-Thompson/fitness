@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
 
-  # GET: /users
   get "/users" do
     erb :"/users/index.html"
   end
 
-  # GET: /users/new
-  get "/users/new" do
+  post "/users/new" do
+    binding.pry
     erb :"/users/new.html"
   end
 
-  # POST: /users
   post "/users" do
+    binding.pry
     redirect "/users"
   end
 
