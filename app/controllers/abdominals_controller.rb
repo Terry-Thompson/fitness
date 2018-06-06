@@ -3,6 +3,7 @@ class AbdominalsController < ApplicationController
 
   # GET: /abdominals
   get "/abdominals" do
+    @user = current_user
     erb :"/abdominals/index.html"
   end
 

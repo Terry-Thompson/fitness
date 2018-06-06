@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   has_many :abdominals
   has_many :backs
   has_many :biceps
