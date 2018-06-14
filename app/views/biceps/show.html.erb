@@ -5,8 +5,8 @@
 <p><%= @bicep.description %></p>
 <br><br>
 <div class="sidebar">
-<a href="/backs/<%= @bicep.id %>/edit"><button>Edit</button></a>
+<a href="/biceps/<%= @bicep.id %>/edit"><button>Edit</button></a>
 <br><br>
-<form action="backs/<%= @bicep.id %>/delete" method="POST">
+<form action="/biceps/<%= @bicep.id %>/delete" method="POST">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="delete">

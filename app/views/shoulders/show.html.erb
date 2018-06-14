@@ -1,12 +1,12 @@
-<h1><%= @ab.exercise_name %></h1>
-<h3>Repetitions: <%= @ab.repetitions %></h3>
-<h3>Weight: <%= @ab.weight %></h3>
+<h1><%= @shoulder.exercise_name %></h1>
+<h3>Repetitions: <%= @shoulder.repetitions %></h3>
+<h3>Weight: <%= @shoulder.weight %></h3>
 <h3>Description:</h3>
-<p><%= @ab.description %></p>
+<p><%= @shoulder.description %></p>
 <div class="sidebar">
-<a href="/abdominals/<%= @ab.id %>/edit"><button>Edit</button></a>
+<a href="/shoulder/<%= @shoulder.id %>/edit"><button>Edit</button></a>
 <br><br>
-<form action="/abdominals/<%= @ab.id %>/delete" method="POST">
+<form action="/shoulder/<%= @shoulder.id %>/delete" method="POST">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="delete">
 </form>

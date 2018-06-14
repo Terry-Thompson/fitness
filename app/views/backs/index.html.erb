@@ -1,10 +1,13 @@
 <h1>Back Exercises</h1>
 
 <div class="sidebar">
-<button><a href="/backs/new">Create</a></button>
+  <button><a href="/backs/new">Create</a></button>
 </div>
-<ul>
+
 <% @backs.each do |back| %>
-<li><a href="/backs/<%= back.id %>"><%= back.exercise_name %></a></li>
-<% end %>
+<ul>
+  <li>
+  <a href="/backs/<%= back.id %>"><%= back.exercise_name %></a>
+  </li>
 </ul>
+<% end %>

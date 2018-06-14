@@ -3,9 +3,12 @@
 <div class="sidebar">
   <a href="/abdominals/new"><button>create</button></a>
 </div>
+
 <ul>  
 <% @abs.each do |ab| %>
-<li><a href="/abdominals/<%= ab.id %>"><%= ab.exercise_name %></a></li>
+  <li>
+  <a href="/abdominals/<%= ab.id %>"><%= ab.exercise_name %></a>
+  </li>
 <% end %>
 </ul>
 

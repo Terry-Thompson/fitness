@@ -1,12 +1,12 @@
-<h1><%= @bicep.exercise_name %></h1>
-<h3>Repetitions: <%= @bicep.repetitions %></h3>
-<h3>Weight: <%= @bicep.weight %></h3>
+<h1><%= @chest.exercise_name %></h1>
+<h3>Repetitions: <%= @chest.repetitions %></h3>
+<h3>Weight: <%= @chest.weight %></h3>
 <br><br>
-<p><%= @bicep.description %></p>
+<p><%= @chest.description %></p>
 <br><br>
 <div class="sidebar">
-<a href="/backs/<%= @bicep.id %>/edit"><button>Edit</button></a>
+<a href="/chests/<%= @chest.id %>/edit"><button>Edit</button></a>
 <br><br>
-<form action="backs/<%= @bicep.id %>/delete" method="POST">
+<form action="/chests/<%= @chest.id %>/delete" method="POST">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="delete">

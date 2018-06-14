@@ -1,9 +1,13 @@
 <h1>Biceps Exercises</h1>
-<ul>
+
 <% @biceps.each do |bicep| %>
-<li><a href="/biceps/<%= bicep.id %>"><%= bicep.exercise_name %></a></li>
-<% end %>
+<ul>
+  <li>
+<a href="/biceps/<%= bicep.id %>"><%= bicep.exercise_name %></a>
+  </li>
 </ul>
+<% end %>
+
 <div class="sidebar">
 <button><a href="/biceps/new">Create</a></button>
 </div>

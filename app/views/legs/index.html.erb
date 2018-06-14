@@ -1,9 +1,13 @@
 <h1>Leg Exercises</h1>
-<ul>
+
 <% @legs.each do |leg| %>
-<li><a href="/legs/<%= leg.id %>"><%= leg.exercise_name %></a></li>
-<% end %>
+<ul>
+  <li>
+<a href="/legs/<%= leg.id %>"><%= leg.exercise_name %></a>
+  </li>
 </ul>
+<% end %>
+
 <div class="sidebar">
 <button><a href="/legs/new">Create</a></button>
 </div>
