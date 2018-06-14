@@ -1,1 +1,9 @@
-<h1>This is the Tricep exercise index page.</h1>
+<h1>Tricep Exercises</h1>
+<ul>
+<% @triceps.each do |tricep| %>
+<li><a href="/triceps/<%= tricep.id %>"><%= tricep.exercise_name %></a></li>
+<% end %>
+</ul>
+<div class="sidebar">
+<button><a href="/triceps/new">Create</a></button>
+</div>

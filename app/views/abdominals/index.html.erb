@@ -1,7 +1,11 @@
-<h1>This is the Abdominal's index page.</h1>
+<h1>Abdominal Exercises</h1>
 
 <div class="sidebar">
-  <a href="/abdominals/new">Create</a>
-<div>
-
+  <a href="/abdominals/new"><button>create</button></a>
+</div>
+<ul>  
+<% @abs.each do |ab| %>
+<li><a href="/abdominals/<%= ab.id %>"><%= ab.exercise_name %></a></li>
+<% end %>
+</ul>
 

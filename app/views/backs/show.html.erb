@@ -1,1 +1,13 @@
-<h1>This is the show page for back exercises.</h1>
+<h1><%= @back.exercise_name %></h1>
+<h3>Repetitions: <%= @back.repetitions %></h3>
+<h3>Weight: <%= @back.weight %></h3>
+<br><br>
+<p><%= @back.description %></p>
+<br><br>
+<div class="sidebar">
+<a href="/backs/<%= @back.id %>/edit"><button>Edit</button></a>
+<br><br>
+<form action="backs/<%= @back.id %>/delete" method="POST">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="delete">
+</div>

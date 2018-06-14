@@ -2,6 +2,7 @@ class BicepsController < ApplicationController
 
   # GET: /biceps
   get "/biceps" do
+    @biceps = Bicep.all
     erb :"/biceps/index.html"
   end
 
@@ -12,11 +13,13 @@ class BicepsController < ApplicationController
 
   # POST: /biceps
   post "/biceps" do
-    redirect "/biceps"
+    @bicep = Bicep.find_or_create_by(params)
+    redirect "/biceps/#{@bicep.id}"
   end
 
   # GET: /biceps/5
   get "/biceps/:id" do
+    @bicep = Bicep.find(params[:id])
     erb :"/biceps/show.html"
   end
 

@@ -1,1 +1,9 @@
-<h1>This is the Leg exercise index page.</h1>
+<h1>Leg Exercises</h1>
+<ul>
+<% @legs.each do |leg| %>
+<li><a href="/legs/<%= leg.id %>"><%= leg.exercise_name %></a></li>
+<% end %>
+</ul>
+<div class="sidebar">
+<button><a href="/legs/new">Create</a></button>
+</div>

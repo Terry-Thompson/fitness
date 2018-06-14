@@ -1,1 +1,9 @@
-<h1>This is the Shoulder exercise index page.</h1>
+<h1>Shoulder Exercises</h1>
+<ul>
+<% @shoulders.each do |shoulder| %>
+<li><a href="/shoulders/<%= shoulder.id %>"><%= shoulder.exercise_name %></a></li>
+<% end %>
+</ul>
+<div class="sidebar">
+<button><a href="/shoulders/new">Create</a></button>
+</div>

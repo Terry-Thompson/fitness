@@ -1,1 +1,10 @@
-<h1>This is the Bicep exercises index page.</h1>
+<h1>Biceps Exercises</h1>
+<ul>
+<% @biceps.each do |bicep| %>
+<li><a href="/biceps/<%= bicep.id %>"><%= bicep.exercise_name %></a></li>
+<% end %>
+</ul>
+<div class="sidebar">
+<button><a href="/biceps/new">Create</a></button>
+</div>
+

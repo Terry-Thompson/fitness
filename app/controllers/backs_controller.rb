@@ -2,6 +2,7 @@ class BacksController < ApplicationController
 
   # GET: /backs
   get "/backs" do
+    @backs = Back.all
     erb :"/backs/index.html"
   end
 
@@ -12,11 +13,13 @@ class BacksController < ApplicationController
 
   # POST: /backs
   post "/backs" do
-    redirect "/backs"
+    @back = Back.find_or_create_by(params)
+    redirect "/backs/#{@back.id}"
   end
 
   # GET: /backs/5
   get "/backs/:id" do
+    @back = Back.find(params[:id])
     erb :"/backs/show.html"
   end
 
@@ -31,7 +34,7 @@ class BacksController < ApplicationController
   end
 
   # DELETE: /backs/5/delete
-  delete "/backs/:id/delete" do
+  post "/backs/:id/delete" do
     redirect "/backs"
   end
 end

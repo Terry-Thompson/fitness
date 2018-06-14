@@ -1,1 +1,13 @@
-<h1>This is the show page for abdominal exercises.</h1>
+<h1><%= @ab.exercise_name %></h1>
+<h3>Repetitions: <%= @ab.repetitions %></h3>
+<h3>Weight: <%= @ab.weight %></h3>
+<h3>Description:</h3>
+<p><%= @ab.description %></p>
+<div class="sidebar">
+<a href="/abdominals/<%= @ab.id %>/edit"><button>Edit</button></a>
+<br><br>
+<form action="/abdominals/<%= @ab.id %>/delete" method="POST">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="delete">
+</form>
+</div>

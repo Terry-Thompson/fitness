@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   post "/users/new" do
     session.clear
     @user = User.find_or_create_by(email: params[:email], password_digest: params[:password]) if filled_out(params)
-binding.pry
       if @user 
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}"
