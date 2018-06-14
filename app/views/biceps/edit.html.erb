@@ -1,1 +1,8 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit <%= @bicep.exercise_name %></h1>
+<form action="/biceps/<%= @bicep.id %>/edit"  method="POST">
+<h3>Repetitions: <input type="number" name="repetitions" placeholder="<%= @bicep.repetitions %>"></h3>
+<h3>Weight: <input type="text" name="weight" placeholder = "<%= @bicep.weight %>"</h3>
+<h3>Description: <input type="text" name="description" placeholder= "<%= @bicep.description %>">
+<br>
+<input type="submit" value="Save Changes">
+</form>
