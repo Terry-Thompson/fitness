@@ -1,8 +1,15 @@
 <h1>Edit <%= @bicep.exercise_name %></h1>
+
 <form action="/biceps/<%= @bicep.id %>/edit"  method="POST">
+
+<h3>Name: <input type="text" name="exercise_name" placeholder="<%= @bicep.exercise_name %>"></h3>
+
 <h3>Repetitions: <input type="number" name="repetitions" placeholder="<%= @bicep.repetitions %>"></h3>
+
 <h3>Weight: <input type="text" name="weight" placeholder = "<%= @bicep.weight %>"</h3>
-<h3>Description: <input type="text" name="description" placeholder= "<%= @bicep.description %>">
+
+<h3>Description: <input type="text" name="description" placeholder= "<%= @bicep.description %>"></h3>
+
 <br>
 <input type="submit" value="Save Changes">
 </form>

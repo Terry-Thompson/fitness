@@ -2,14 +2,14 @@
 
 <form action="/abdominals/<%= @ab.id %>/edit"  method="POST">
 
-  <h3>Repetitions: <input type="number" name="repetitions" placeholder="<%= @ab.repetitions %>">
-  </h3>
+<h3>Name: <input type="text" name="exercise_name" placeholder="<%= @ab.exercise_name %>"></h3>
 
-  <h3>Weight: <input type="text" name="weight" placeholder = "<%= @ab.weight %>">
-  </h3>
+<h3>Repetitions: <input type="number" name="repetitions" placeholder="<%= @ab.repetitions %>"></h3>
+
+<h3>Weight: <input type="text" name="weight" placeholder = "<%= @ab.weight %>"></h3>
   
-  <h3>Description: <input type="text" name="description" placeholder= "<%= @ab.description %>">
-  </h3>
+<h3>Description: <input type="text" name="description" placeholder= "<%= @ab.description %>"></h3>
+
 <br>
 <input type="submit" value="Save Changes">
 </form>

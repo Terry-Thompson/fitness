@@ -1,37 +1,35 @@
 class ChestsController < ApplicationController
 
-  # GET: /chests
   get "/chests" do
+    @chests = Chest.all
     erb :"/chests/index.html"
   end
 
-  # GET: /chests/new
   get "/chests/new" do
     erb :"/chests/new.html"
   end
 
-  # POST: /chests
   post "/chests" do
-    redirect "/chests"
+    @chest = Chest.find_or_create_by(params)
+    redirect "/chests/#{@chest.id}"
   end
 
-  # GET: /chests/5
   get "/chests/:id" do
+    @chest = Chest.find(params[:id])
     erb :"/chests/show.html"
   end
 
-  # GET: /chests/5/edit
   get "/chests/:id/edit" do
     erb :"/chests/edit.html"
   end
 
-  # PATCH: /chests/5
-  patch "/chests/:id" do
+  post "/chests/:id" do
+    @chest = Chest.find(params[:id])
     redirect "/chests/:id"
   end
 
-  # DELETE: /chests/5/delete
-  delete "/chests/:id/delete" do
+  post "/chests/:id/delete" do
+    @chest = Chest.find(params[:id])
     redirect "/chests"
   end
 end

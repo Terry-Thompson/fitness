@@ -2,6 +2,7 @@ class LegsController < ApplicationController
 
   # GET: /legs
   get "/legs" do
+    @legs = Leg.all
     erb :"/legs/index.html"
   end
 
@@ -12,11 +13,13 @@ class LegsController < ApplicationController
 
   # POST: /legs
   post "/legs" do
-    redirect "/legs"
+    @leg = Leg.find_or_create_by(params)
+    redirect "/legs/#{@leg.id}"
   end
 
   # GET: /legs/5
   get "/legs/:id" do
+    @leg = Leg.find(params[:id])
     erb :"/legs/show.html"
   end
 

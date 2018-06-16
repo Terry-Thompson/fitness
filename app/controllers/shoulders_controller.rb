@@ -1,36 +1,34 @@
 class ShouldersController < ApplicationController
 
-  # GET: /shoulders
   get "/shoulders" do
+    @shoulders = Shoulder.all
     erb :"/shoulders/index.html"
   end
 
-  # GET: /shoulders/new
   get "/shoulders/new" do
     erb :"/shoulders/new.html"
   end
 
-  # POST: /shoulders
   post "/shoulders" do
-    redirect "/shoulders"
+    @shoulder = Shoulder.find_or_create_by(params)
+    redirect "/shoulders/#{@shoulder.id}"
   end
 
-  # GET: /shoulders/5
   get "/shoulders/:id" do
+    @shoulder = Shoulder.find(params[:id])
     erb :"/shoulders/show.html"
   end
 
-  # GET: /shoulders/5/edit
   get "/shoulders/:id/edit" do
+    @shoulder = Shoulder.find(params[:id])
+    @shoulder.update(params)
     erb :"/shoulders/edit.html"
   end
 
-  # PATCH: /shoulders/5
-  patch "/shoulders/:id" do
+  post "/shoulders/:id" do
     redirect "/shoulders/:id"
   end
 
-  # DELETE: /shoulders/5/delete
   delete "/shoulders/:id/delete" do
     redirect "/shoulders"
   end
