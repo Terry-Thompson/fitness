@@ -2,9 +2,12 @@ require_all 'app'
 class AbdominalsController < ApplicationController
 
   get "/abdominals" do
-    @user = current_user
-    @abs = Abdominal.all
-    erb :"/abdominals/index.html"
+    if logged_in?
+      @abs = Abdominal.all.collect {|a| a if match(a.user_id)}
+      erb :"/abdominals/index.html"
+    else
+      redirect "/"
+    end
   end
 
   get "/abdominals/new" do
@@ -12,8 +15,13 @@ class AbdominalsController < ApplicationController
   end
 
   post "/abdominals" do
-    @ab = Abdominal.find_or_create_by(params)
-    redirect :"/abdominals/#{@ab.id}"
+    if filled_out(params)
+      @ab = Abdominal.find_or_create_by(params)
+      set_user_id(@ab)
+      redirect :"/abdominals/#{@ab.id}"
+    else
+      redirect :"/abdominals/new"
+    end
   end
 
   get "/abdominals/:id" do
@@ -27,9 +35,14 @@ class AbdominalsController < ApplicationController
   end
 
   post "/abdominals/:id/edit" do
-    @ab = Abdominal.find(params[:id])
-    @ab.update(params)
-    redirect "/abdominals/#{@ab.id}"
+    if filled_out(params)
+      @ab = Abdominal.find(params[:id])
+      @ab.update(params)
+      set_user_id(@ab)
+      redirect "/abdominals"
+    else
+      redirect :"/abdominals/#{params[:id]}/edit"
+    end
   end
 
   post "/abdominals/:id/delete" do

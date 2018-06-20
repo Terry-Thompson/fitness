@@ -1,37 +1,40 @@
 class TricepsController < ApplicationController
 
-  # GET: /triceps
   get "/triceps" do
+    @triceps = Tricep.all.collect {|t| t if match(t.user_id)}
     erb :"/triceps/index.html"
   end
 
-  # GET: /triceps/new
   get "/triceps/new" do
     erb :"/triceps/new.html"
   end
 
-  # POST: /triceps
   post "/triceps" do
+    @tricep = Tricep.find_or_create_by(params)
+    set_user_id(@tricep)
     redirect "/triceps"
   end
 
-  # GET: /triceps/5
   get "/triceps/:id" do
+    @tricep = Tricep.find(params[:id])
     erb :"/triceps/show.html"
   end
 
-  # GET: /triceps/5/edit
   get "/triceps/:id/edit" do
+    @tricep = Tricep.find(params[:id])
     erb :"/triceps/edit.html"
   end
 
-  # PATCH: /triceps/5
-  patch "/triceps/:id" do
-    redirect "/triceps/:id"
+  post "/triceps/:id" do
+    @tricep = Tricep.find(params[:id])
+    @tricep.update(params)
+    set_user_id(@tricep)
+    redirect "/triceps/#{@tricep.id}"
   end
 
-  # DELETE: /triceps/5/delete
-  delete "/triceps/:id/delete" do
+  post "/triceps/:id/delete" do
+    @tricep = Tricep.find(params[:id])
+    @tricep.destroy
     redirect "/triceps"
   end
 end

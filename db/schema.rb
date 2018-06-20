@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517022902) do
+ActiveRecord::Schema.define(version: 20180618211740) do
 
   create_table "abdominals", force: :cascade do |t|
     t.string   "exercise_name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180517022902) do
     t.string   "weight"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "backs", force: :cascade do |t|
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20180517022902) do
     t.string   "weight"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "biceps", force: :cascade do |t|
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180517022902) do
     t.string   "weight"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "chests", force: :cascade do |t|
@@ -47,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180517022902) do
     t.string   "weight"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "legs", force: :cascade do |t|
@@ -56,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180517022902) do
     t.string   "weight"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "shoulders", force: :cascade do |t|
@@ -65,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180517022902) do
     t.string   "weight"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "triceps", force: :cascade do |t|
@@ -74,6 +80,7 @@ ActiveRecord::Schema.define(version: 20180517022902) do
     t.string   "weight"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|

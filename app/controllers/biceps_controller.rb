@@ -1,8 +1,13 @@
 class BicepsController < ApplicationController
 
   get "/biceps" do
-    @biceps = Bicep.all
-    erb :"/biceps/index.html"
+    if logged_in?
+      binding.pry
+      @biceps = Bicep.all.collect {|b| b if match(b.user_id)}
+      erb :"/biceps/index.html"
+    else
+      redirect '/'
+    end
   end
 
   get "/biceps/new" do
@@ -10,8 +15,13 @@ class BicepsController < ApplicationController
   end
 
   post "/biceps" do
-    @bicep = Bicep.find_or_create_by(params)
-    redirect "/biceps/#{@bicep.id}"
+    if filled_out(params)
+      @bicep = Bicep.find_or_create_by(params)
+      set_user_id(@bicep)
+      redirect "/biceps/#{@bicep.id}"
+    else
+      redirect "/biceps/new"
+    end
   end
 
   get "/biceps/:id" do
@@ -21,14 +31,24 @@ class BicepsController < ApplicationController
 
   get "/biceps/:id/edit" do
     @bicep = Bicep.find(params[:id])
+    @bicep.user_id = current_user.id
     erb :"/biceps/edit.html"
   end
 
-  patch "/biceps/:id" do
-    redirect "/biceps/:id"
+  post "/biceps/:id/edit" do
+    if filled_out(params)
+      @bicep = Bicep.find(params[:id])
+      @bicep.update(params)
+      set_user_id(@bicep)
+      redirect "/biceps/#{@bicep.id}"
+    else
+      redirect "/biceps/#{params[:id]}/edit"
+    end
   end
 
-  delete "/biceps/:id/delete" do
+  post "/biceps/:id/delete" do
+    @bicep = Bicep.find(params[:id])
+    @bicep.destroy
     redirect "/biceps"
   end
 end

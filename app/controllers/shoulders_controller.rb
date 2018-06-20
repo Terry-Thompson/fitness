@@ -1,7 +1,7 @@
 class ShouldersController < ApplicationController
 
   get "/shoulders" do
-    @shoulders = Shoulder.all
+    @shoulders = Shoulder.all.collect {|shoulder| shoulder if match(shoulder.user_id)}
     erb :"/shoulders/index.html"
   end
 
@@ -11,6 +11,7 @@ class ShouldersController < ApplicationController
 
   post "/shoulders" do
     @shoulder = Shoulder.find_or_create_by(params)
+    set_user_id(@shoulder)
     redirect "/shoulders/#{@shoulder.id}"
   end
 
@@ -26,10 +27,15 @@ class ShouldersController < ApplicationController
   end
 
   post "/shoulders/:id" do
+    @shoulder = Shoulder.find(params[:id])
+    @shoulder.update(params)
+    set_user_id(@shoulder)
     redirect "/shoulders/:id"
   end
 
-  delete "/shoulders/:id/delete" do
+  post "/shoulders/:id/delete" do
+    @shoulder = Shoulder.find(params[:id])
+    @shoulder.destroy
     redirect "/shoulders"
   end
 end
