@@ -4,9 +4,10 @@ class UsersController < ApplicationController
     erb :"/users/index.html"
   end
 
-  post "/users/new" do
+  post "/signup" do
     session.clear
     @user = User.find_or_create_by(email: params[:email], password_digest: params[:password]) if filled_out(params)
+binding.pry
       if @user 
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}"
@@ -16,13 +17,12 @@ class UsersController < ApplicationController
       end
   end
 
-  post "/users" do
+  post "/login" do
     user = User.find_by(email: params[:email])
     if user 
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
     else
-      #redirect
       redirect '/'
     end
   end

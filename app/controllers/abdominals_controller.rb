@@ -18,7 +18,7 @@ class AbdominalsController < ApplicationController
     if filled_out(params)
       @ab = Abdominal.find_or_create_by(params)
       set_user_id(@ab)
-      redirect :"/abdominals/#{@ab.id}"
+      redirect :"/abdominals"
     else
       redirect :"/abdominals/new"
     end

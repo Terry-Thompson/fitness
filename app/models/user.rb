@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+has_secure_password 
+validates :password, :confirmation => true
+validates :email, uniqueness: true
 
   has_many :abdominals
   has_many :backs
@@ -8,5 +11,4 @@ class User < ActiveRecord::Base
   has_many :shoulders
   has_many :triceps
   
-  has_secure_password 
 end

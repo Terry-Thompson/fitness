@@ -1,7 +1,6 @@
 class ChestsController < ApplicationController
 
   get "/chests" do
-binding.pry
     @chests = Chest.all.collect {|c| c if match(c.user_id)}
     erb :"/chests/index.html"
   end
