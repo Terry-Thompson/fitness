@@ -35,19 +35,17 @@ class AbdominalsController < ApplicationController
   end
 
   post "/abdominals/:id/edit" do
-    if filled_out(params)
       @ab = Abdominal.find(params[:id])
-      @ab.update(params)
-      set_user_id(@ab)
+      verify_and_update(@ab)
+    end
+
+  post "/abdominals/:id/delete" do  
+    @ab = Abdominal.find(params[:id])
+    if verified(@ab)
+      @ab.destroy 
       redirect "/abdominals"
     else
-      redirect :"/abdominals/#{params[:id]}/edit"
+      redirect "/abdominals/#{@ab.id}"
     end
-  end
-
-  post "/abdominals/:id/delete" do
-    @ab = Abdominal.find(params[:id])
-    @ab.destroy
-    redirect "/abdominals"
   end
 end

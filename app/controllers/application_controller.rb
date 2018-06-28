@@ -35,5 +35,19 @@ class ApplicationController < Sinatra::Base
       obj.user_id = current_user.id 
       obj.save 
     end
+
+    def verified(obj)
+      filled_out(params) && match(obj.user_id)
+    end
+
+    def verify_and_update(obj)
+      if verified(obj)
+        obj.update(params)
+        set_user_id(obj)
+        redirect "/#{obj.class.to_s.downcase}s"
+      else
+        redirect "/#{obj.class.to_s.downcase}/#{params[:id]}/edit"
+      end
+    end
   end
 end

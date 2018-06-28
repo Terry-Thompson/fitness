@@ -6,9 +6,8 @@ class UsersController < ApplicationController
 
   post "/signup" do
     session.clear
-    @user = User.find_or_create_by(email: params[:email], password_digest: params[:password]) if filled_out(params)
-binding.pry
-      if @user 
+    @user = User.create(email: params[:email], password: params[:password]) if filled_out(params)
+      if @user && @user.authenticate(params[:password]) 
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}"
       else
@@ -19,7 +18,7 @@ binding.pry
 
   post "/login" do
     user = User.find_by(email: params[:email])
-    if user 
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
     else
