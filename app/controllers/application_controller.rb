@@ -19,28 +19,34 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
+
     def filled_out(params)
       params.none?{|k,v| v.empty?}
     end
     
+
     def current_user
       User.find(session[:user_id])
     end
     
+
     def match(id)
       current_user.id == id
     end
   
+
     def set_user_id(obj)
       obj.user_id = current_user.id 
       obj.save 
     end
 
+
     def verified(obj)
       filled_out(params) && match(obj.user_id)
     end
 
-    def verify_and_update(obj)
+
+    def _update(obj)
       if verified(obj)
         obj.update(params)
         set_user_id(obj)
@@ -49,5 +55,16 @@ class ApplicationController < Sinatra::Base
         redirect "/#{obj.class.to_s.downcase}/#{params[:id]}/edit"
       end
     end
-  end
-end
+
+
+    def delete(obj)
+      if match(obj.user_id)
+        obj.destroy
+        redirect "/#{obj.class.to_s.downcase}s"
+      else
+        redirect "/#{obj.class.to_s.downcase}s/#{obj.id}"
+      end
+    end 
+
+  end#of helpers
+end# of class

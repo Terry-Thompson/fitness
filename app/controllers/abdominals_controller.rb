@@ -15,37 +15,41 @@ class AbdominalsController < ApplicationController
   end
 
   post "/abdominals" do
-    if filled_out(params)
-      @ab = Abdominal.find_or_create_by(params)
-      set_user_id(@ab)
-      redirect :"/abdominals"
-    else
-      redirect :"/abdominals/new"
-    end
+    @ab = Abdominal.find_or_create_by(params)
+      if logged_in?
+        set_user_id(@ab)
+        redirect "/abdominals"
+      else
+        redirect "/abdominals/new"
+      end
   end
 
   get "/abdominals/:id" do
     @ab = Abdominal.find(params[:id])
-    erb :"/abdominals/show.html"
+      if logged_in? && verified(@ab)
+        erb :"/abdominals/show.html"
+      else
+        redirect "/abdominals"
+      end
   end
 
   get "/abdominals/:id/edit" do
     @ab = Abdominal.find(params[:id])
-    erb :"/abdominals/edit.html"
+      if verified(@ab)
+        erb :"/abdominals/edit.html"
+      else
+        redirect "/abdominals/#{params[:id]}"
+      end
   end
 
   post "/abdominals/:id/edit" do
-      @ab = Abdominal.find(params[:id])
-      verify_and_update(@ab)
-    end
+    @ab = Abdominal.find(params[:id])
+    update(@ab)
+  end
 
   post "/abdominals/:id/delete" do  
     @ab = Abdominal.find(params[:id])
-    if verified(@ab)
-      @ab.destroy 
-      redirect "/abdominals"
-    else
-      redirect "/abdominals/#{@ab.id}"
-    end
+    delete(@ab)
   end
+
 end
