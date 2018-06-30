@@ -11,31 +11,26 @@ class ShouldersController < ApplicationController
 
   post "/shoulders" do
     @shoulder = Shoulder.find_or_create_by(params)
-    set_user_id(@shoulder)
-    redirect "/shoulders/#{@shoulder.id}"
+    create(@shoulder)
   end
 
   get "/shoulders/:id" do
     @shoulder = Shoulder.find(params[:id])
-    erb :"/shoulders/show.html"
+    show(@shoulder)
   end
 
   get "/shoulders/:id/edit" do
     @shoulder = Shoulder.find(params[:id])
-    @shoulder.update(params)
-    erb :"/shoulders/edit.html"
+    edit(@shoulder)
   end
 
   post "/shoulders/:id" do
     @shoulder = Shoulder.find(params[:id])
-    @shoulder.update(params)
-    set_user_id(@shoulder)
-    redirect "/shoulders/:id"
+    update(@shoulder)
   end
 
   post "/shoulders/:id/delete" do
     @shoulder = Shoulder.find(params[:id])
-    @shoulder.destroy
-    redirect "/shoulders"
+    delete(@shoulder)
   end
 end

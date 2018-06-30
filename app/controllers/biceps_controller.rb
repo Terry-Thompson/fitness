@@ -14,40 +14,27 @@ class BicepsController < ApplicationController
   end
 
   post "/biceps" do
-    if filled_out(params)
-      @bicep = Bicep.find_or_create_by(params)
-      set_user_id(@bicep)
-      redirect "/biceps/#{@bicep.id}"
-    else
-      redirect "/biceps/new"
-    end
+    @bicep = Bicep.find_or_create_by(params)
+    create(@bicep)
   end
 
   get "/biceps/:id" do
     @bicep = Bicep.find(params[:id])
-    erb :"/biceps/show.html"
+    show(@bicep)
   end
 
   get "/biceps/:id/edit" do
     @bicep = Bicep.find(params[:id])
-    @bicep.user_id = current_user.id
-    erb :"/biceps/edit.html"
+    edit(@bicep)
   end
 
   post "/biceps/:id/edit" do
-    if filled_out(params)
-      @bicep = Bicep.find(params[:id])
-      @bicep.update(params)
-      set_user_id(@bicep)
-      redirect "/biceps/#{@bicep.id}"
-    else
-      redirect "/biceps/#{params[:id]}/edit"
-    end
+    @bicep = Bicep.find(params[:id])
+    update(@bicep)
   end
 
   post "/biceps/:id/delete" do
     @bicep = Bicep.find(params[:id])
-    @bicep.destroy
-    redirect "/biceps"
+    delete(@bicep)
   end
 end

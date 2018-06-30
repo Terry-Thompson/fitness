@@ -10,39 +10,27 @@ class LegsController < ApplicationController
   end
 
   post "/legs" do
-    if filled_out(params)
-      @leg = Leg.find_or_create_by(params)
-      set_user_id(@leg)
-      redirect "/legs"
-    else
-      redirect "/legs/new"
-    end
+    @leg = Leg.find_or_create_by(params)
+    create(@leg)
   end
 
   get "/legs/:id" do
     @leg = Leg.find(params[:id])
-    erb :"/legs/show.html"
+    show(@leg)
   end
 
   get "/legs/:id/edit" do
     @leg = Leg.find(params[:id])
-    erb :"/legs/edit.html"
+    edit(@leg)
   end
 
   post "/legs/:id" do
-    if filled_out?  
-      @leg = Leg.find(params[:id])
-      @leg.update(params)
-      set_user_id(@leg)
-      redirect "/legs/:id"
-    else
-      redirect "/legs/#{@leg.id}/edit"
-    end
+    @leg = Leg.find(params[:id])
+    update(@leg)
   end
 
   post "/legs/:id/delete" do
     @leg = Leg.find(params[:id]) 
-    @leg.destroy
-    redirect "/legs"
+    delete(@leg)
   end
 end

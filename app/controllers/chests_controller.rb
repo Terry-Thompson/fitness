@@ -10,39 +10,27 @@ class ChestsController < ApplicationController
   end
 
   post "/chests" do
-    if filled_out(params)
-      @chest = Chest.find_or_create_by(params)
-      set_id(@chest)
-      redirect "/chests/#{@chest.id}"
-    else
-      redirect "/chests/new"
-    end
+    @chest = Chest.find_or_create_by(params)
+    create(@chest)
   end
 
   get "/chests/:id" do
     @chest = Chest.find(params[:id])
-    erb :"/chests/show.html"
+    show(@chest)
   end
 
   get "/chests/:id/edit" do
     @chest = Chest.find(params[:id])
-    erb :"/chests/edit.html"
+    edit(@chest)
   end
 
   post "/chests/:id/edit" do
-    if filled_out(params)
-      @chest = Chest.find(params[:id])
-      @chest.update(params)
-      set_id(@chest)
-      redirect "/chests"
-    else
-      redirect "/chests/#{params[:id]}/edit"
-    end 
+    @chest = Chest.find(params[:id])
+    update(@chest)
   end
 
   post "/chests/:id/delete" do
     @chest = Chest.find(params[:id])
-    @chest.destroy
-    redirect "/chests"
+    delete(@chest)
   end
 end

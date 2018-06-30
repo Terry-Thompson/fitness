@@ -11,30 +11,26 @@ class TricepsController < ApplicationController
 
   post "/triceps" do
     @tricep = Tricep.find_or_create_by(params)
-    set_user_id(@tricep)
-    redirect "/triceps"
+    create(@tricep)
   end
 
   get "/triceps/:id" do
     @tricep = Tricep.find(params[:id])
-    erb :"/triceps/show.html"
+    show(@tricep)
   end
 
   get "/triceps/:id/edit" do
     @tricep = Tricep.find(params[:id])
-    erb :"/triceps/edit.html"
+    edit(@tricep)
   end
 
   post "/triceps/:id" do
     @tricep = Tricep.find(params[:id])
-    @tricep.update(params)
-    set_user_id(@tricep)
-    redirect "/triceps/#{@tricep.id}"
+    update(@tricep)
   end
 
   post "/triceps/:id/delete" do
     @tricep = Tricep.find(params[:id])
-    @tricep.destroy
-    redirect "/triceps"
+    delete(@tricep)
   end
 end
