@@ -45,8 +45,27 @@ class ApplicationController < Sinatra::Base
       filled_out(params) && match(obj.user_id)
     end
 
+    
+    def create(obj)
+      if logged_in?
+        set_user_id(obj)
+        redirect "/#{obj.class.to_s.downcase}s"
+      else
+        redirect "/#{obj.class.to_s.downcase}s/new"
+      end
+    end
 
-    def _update(obj)
+
+    def edit(obj)
+      if verified(obj)
+        erb :"/#{obj.class.to_s.downcase}s/edit.html"
+      else
+        redirect "/#{obj.class.to_s.downcase}s/#{params[:id]}"
+      end
+    end
+
+
+    def update(obj)
       if verified(obj)
         obj.update(params)
         set_user_id(obj)
@@ -65,6 +84,16 @@ class ApplicationController < Sinatra::Base
         redirect "/#{obj.class.to_s.downcase}s/#{obj.id}"
       end
     end 
+
+    
+    def show(obj)
+      if logged_in? && verified(obj)
+        erb :"/#{obj.class.to_s.downcase}s/show.html"
+      else
+        redirect "/#{obj.class.to_s.downcase}s"
+      end
+    end
+
 
   end#of helpers
 end# of class

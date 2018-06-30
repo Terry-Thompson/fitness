@@ -2,7 +2,6 @@ class BicepsController < ApplicationController
 
   get "/biceps" do
     if logged_in?
-      binding.pry
       @biceps = Bicep.all.collect {|b| b if match(b.user_id)}
       erb :"/biceps/index.html"
     else
