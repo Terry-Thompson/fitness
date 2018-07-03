@@ -3,7 +3,7 @@ class BacksController < ApplicationController
 
   get "/backs" do
     if logged_in?
-      @backs = Back.all.collect {|b| b if match(b.user_id)}
+      @backs = current_user.backs.all
       erb :"/backs/index.html"
     else
       redirect "/"

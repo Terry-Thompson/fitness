@@ -3,7 +3,7 @@ class AbdominalsController < ApplicationController
 
   get "/abdominals" do
     if logged_in?
-      @abs = Abdominal.all.collect {|a| a if match(a.user_id)}
+      @abs = current_user.abdominals.all
       erb :"/abdominals/index.html"
     else
       redirect "/"

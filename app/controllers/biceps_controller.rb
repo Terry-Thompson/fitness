@@ -2,7 +2,7 @@ class BicepsController < ApplicationController
 
   get "/biceps" do
     if logged_in?
-      @biceps = Bicep.all.collect {|b| b if match(b.user_id)}
+      @biceps = current_user.biceps.all
       erb :"/biceps/index.html"
     else
       redirect '/'

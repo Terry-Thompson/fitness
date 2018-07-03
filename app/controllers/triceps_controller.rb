@@ -1,8 +1,12 @@
 class TricepsController < ApplicationController
 
   get "/triceps" do
-    @triceps = Tricep.all.collect {|t| t if match(t.user_id)}
-    erb :"/triceps/index.html"
+    if logged_in?
+      @triceps = current_user.triceps.all
+      erb :"/triceps/index.html"
+    else
+      redirect '/'
+    end
   end
 
   get "/triceps/new" do

@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
 
-  get "/users" do 
-    erb :"/users/index.html"
-  end
-
   post "/signup" do
     session.clear
     @user = User.create(email: params[:email], password: params[:password]) if filled_out(params)

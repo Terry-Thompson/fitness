@@ -1,8 +1,12 @@
 class ShouldersController < ApplicationController
 
   get "/shoulders" do
-    @shoulders = Shoulder.all.collect {|shoulder| shoulder if match(shoulder.user_id)}
-    erb :"/shoulders/index.html"
+    if logged_in?
+      @shoulders = current_user.shoulders.all
+      erb :"/shoulders/index.html"
+    else
+      redirect '/'
+    end
   end
 
   get "/shoulders/new" do

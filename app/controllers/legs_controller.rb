@@ -1,8 +1,12 @@
 class LegsController < ApplicationController
 
   get "/legs" do
-    @legs = Leg.all.collect {|l| l if match(l.user_id)}
-    erb :"/legs/index.html"
+    if logged_in?
+      @legs = current_user.legs.all
+      erb :"/legs/index.html"
+    else
+      redirect '/'
+    end
   end
 
   get "/legs/new" do

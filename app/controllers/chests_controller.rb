@@ -1,8 +1,12 @@
 class ChestsController < ApplicationController
 
   get "/chests" do
-    @chests = Chest.all.collect {|c| c if match(c.user_id)}
-    erb :"/chests/index.html"
+    if logged_in?
+      @chests = current_user.chests.all
+      erb :"/chests/index.html"
+    else
+      redirect '/'
+    end
   end
 
   get "/chests/new" do
