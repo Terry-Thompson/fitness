@@ -4,9 +4,11 @@
 <br><br>
 <p><%= @chest.description %></p>
 <br><br>
+<a href="/users/<%= current_user.id %>"><button>Main Menu</button></a>
 <div class="sidebar">
 <a href="/chests/<%= @chest.id %>/edit"><button>Edit</button></a>
 <br><br>
 <form action="/chests/<%= @chest.id %>/delete" method="POST">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="delete">
+</div>

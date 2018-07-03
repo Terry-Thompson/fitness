@@ -24,7 +24,7 @@ class TricepsController < ApplicationController
     edit(@tricep)
   end
 
-  post "/triceps/:id" do
+  post "/triceps/:id/edit" do
     @tricep = Tricep.find(params[:id])
     update(@tricep)
   end

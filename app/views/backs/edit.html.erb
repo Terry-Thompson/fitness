@@ -2,13 +2,13 @@
 
 <form action="/backs/<%= @back.id %>/edit"  method="POST">
 
-<h3>Name: <input type="text" name="exercise_name" placeholder="<%= @back.exercise_name %>"></h3>
+<h3>Name: <input type="text" name="exercise_name" value="<%= @back.exercise_name %>"></h3>
 
-<h3>Repetitions: <input type="number" name="repetitions" placeholder="<%= @back.repetitions %>"></h3>
+<h3>Repetitions: <input type="number" name="repetitions" value="<%= @back.repetitions %>"></h3>
 
-<h3>Weight: <input type="text" name="weight" placeholder = "<%= @back.weight %>"</h3>
+<h3>Weight: <input type="text" name="weight" value = "<%= @back.weight %>"</h3>
 
-<h3>Description: <input type="text" name="description" placeholder= "<%= @back.description %>"></h3>
+<h3>Description: <input type="text" name="description" value= "<%= @back.description %>"></h3>
 
 <br>
 <input type="submit" value="Save Changes">

@@ -2,13 +2,13 @@
 
 <form action="/triceps/<%= @tricep.id %>/edit"  method="POST">
 
-<h3>Name: <input type="text" name="exercise_name" placeholder="<%= @tricep.exercise_name %>"></h3>
+<h3>Name: <input type="text" name="exercise_name" value="<%= @tricep.exercise_name %>"></h3>
 
-<h3>Repetitions: <input type="number" name="repetitions" placeholder="<%= @tricep.repetitions %>"></h3>
+<h3>Repetitions: <input type="number" name="repetitions" value="<%= @tricep.repetitions %>"></h3>
 
-<h3>Weight: <input type="text" name="weight" placeholder = "<%= @tricep.weight %>"</h3>
+<h3>Weight: <input type="text" name="weight" value = "<%= @tricep.weight %>"</h3>
 
-<h3>Description: <input type="text" name="description" placeholder= "<%= @tricep.description %>"></h3>
+<h3>Description: <input type="text" name="description" value= "<%= @tricep.description %>"></h3>
 
 <br>
 <input type="submit" value="Save Changes">

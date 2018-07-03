@@ -3,6 +3,8 @@
 <h3>Weight: <%= @ab.weight %></h3>
 <h3>Description:</h3>
 <p><%= @ab.description %></p>
+<br><br>
+<a href="/users/<%= current_user.id %>"><button>Main Menu</button></a>
 <div class="sidebar">
 <a href="/abdominals/<%= @ab.id %>/edit"><button>Edit</button></a>
 <br><br>
