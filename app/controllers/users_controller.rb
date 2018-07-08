@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+use Rack::Flash
 
   post "/signup" do
     session.clear
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}"
       else
-        #error flash message
+        flash[:message] = "Sign up Failed"
         redirect "/"
       end
   end
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
     else
+      flash[:message] = "Login failed"
       redirect '/'
     end
   end

@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+
 <h1>Welcome, <%= @user.email %></h1>
 
 <h3>Your exercises:</h3>
@@ -13,4 +17,4 @@
 </ul>
 <br><br>
 
-<button><h3><a href="/logout">Log out</a></h3></button>
+<a href="/logout"><button>Log out</button></a>

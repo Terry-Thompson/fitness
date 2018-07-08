@@ -1,3 +1,7 @@
+  <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
+
 <h1>Shoulder Exercises</h1>
 
 <% @shoulders.each do |shoulder| %>

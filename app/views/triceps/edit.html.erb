@@ -1,3 +1,7 @@
+  <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
+
 <h1>Edit <%= @tricep.exercise_name %></h1>
 
 <form action="/triceps/<%= @tricep.id %>/edit"  method="POST">

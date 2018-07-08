@@ -1,6 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -46,6 +48,11 @@ class ApplicationController < Sinatra::Base
     end
 
     
+    def problem
+      flash[:message] = "There was a problem with your form"
+    end
+
+ 
     def create(obj)
       if logged_in?
         set_user_id(obj)
@@ -60,6 +67,7 @@ class ApplicationController < Sinatra::Base
       if verified(obj)
         erb :"/#{obj.class.to_s.downcase}s/edit.html"
       else
+        problem
         redirect "/#{obj.class.to_s.downcase}s/#{params[:id]}"
       end
     end
@@ -69,8 +77,10 @@ class ApplicationController < Sinatra::Base
       if verified(obj)
         obj.update(params)
         set_user_id(obj)
+        flash[:message] = "Update successful"
         redirect "/#{obj.class.to_s.downcase}s"
       else
+        problem
         redirect "/#{obj.class.to_s.downcase}/#{params[:id]}/edit"
       end
     end
@@ -79,8 +89,10 @@ class ApplicationController < Sinatra::Base
     def delete(obj)
       if match(obj.user_id)
         obj.destroy
+        flash[:message] = "#{obj.exercise_name} successfully deleted."
         redirect "/#{obj.class.to_s.downcase}s"
       else
+        problem
         redirect "/#{obj.class.to_s.downcase}s/#{obj.id}"
       end
     end 
@@ -90,6 +102,7 @@ class ApplicationController < Sinatra::Base
       if logged_in? && verified(obj)
         erb :"/#{obj.class.to_s.downcase}s/show.html"
       else
+        problem
         redirect "/#{obj.class.to_s.downcase}s"
       end
     end

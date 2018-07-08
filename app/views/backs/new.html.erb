@@ -1,3 +1,7 @@
+  <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
+
 <h1>New Back Exercise</h1>
 
 <form action="/backs" method="POST">

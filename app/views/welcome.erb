@@ -1,8 +1,14 @@
 <div class="container">
-  <header></header>
+  <header>
+    <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+    <% end %>
+  </header>
+
   <div class="col-md-8 col-md-offset-2">
     <h2>Physical Fitness Former</h2>
 
+    
     <div class="content">
       <p>Welcome to your personal physical fitness former. Set goals and achieve them.  Chart your course and set sail for success.  Life is lovely.</p>
     </div>

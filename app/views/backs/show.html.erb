@@ -1,3 +1,7 @@
+  <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
+
 <h1><%= @back.exercise_name %></h1>
 <h3>Repetitions: <%= @back.repetitions %></h3>
 <h3>Weight: <%= @back.weight %></h3>
